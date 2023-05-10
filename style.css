@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.red {
+    color: #BC1722;
+}
+
+
+/* NAVIGARTION  */
+
+.nav__window {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav__figure {
+}
+
+.nav__img {
+    width: 160px;
+}
+
+.nav__tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav__tab {
+    padding-left: 30px;
+    list-style-type: none;
+}
+
+.nav__tab--anchor {
+    text-decoration: none;
+    
+}
+
+.nav__tab--anchor:hover {
+
+}
+
+.black {
+    color: black;
+}
+
+.nav__contact {
+    border: 2px #BC1722;
+    border-radius: 20px;
+    background-color: #BC1722;
+    margin-left: 24px;
+    list-style-type: none;
+
+}
+
+.nav__contact--text {
+    color: white;
+    display: flex;
+    align-items: center;
+    margin: 8px 16px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav__contact:hover {
+    background-color: rgb(200, 77, 77);
+    transition: all .35s ease;
+}
