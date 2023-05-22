@@ -1,46 +1,32 @@
+let Userurl;
+let searchInputValue;
 
-// async function main(){
-//     const news = await fetch("https://newsapi.org/v2/everything?q=nice&from=2023-05-14&sortBy=popularity&apiKey=28a8dff1341c46be965cb359067b70ab");
-//     const newsData = await news.json();
-//     console.log(newsData)
-//     const newsListEl = document.querySelector('.news__container');
-//     newsListEl.innerHTML = newsData.articles.map((news) => newsHTML(news)).join("")             
-// }
+document.addEventListener('DOMContentLoaded', (event) => {
+    const searchForm = document.querySelector('.search');
+    searchForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const searchInput = document.querySelector('.search__input');
+        searchInputValue = searchInput.value;
+        
+        Userurl = `https://newsapi.org/v2/everything?q=${searchInputValue}&from=2023-05-14&sortBy=popularity&apiKey=28a8dff1341c46be965cb359067b70ab`;
+        
+        if(searchInputValue.trim() !== ""){
+            await main(Userurl);
+        }
+    });
+    main();
+});
 
-// main();
-
-
-// function showNewsPosts(url) {
-//     localStorage.setItem("url", url);
-//     window.location.href = `${window.location.origin}/NewsPage.html`;
-
-// }
-
-
-// function newsHTML(news){
-//     return `<div class="news" onclick="showNewsPosts('${news.url}')">
-//         <figure class="img">
-//             <img src="${news.urlToImage}" alt="" class="news__img">
-//         </figure>
-//         <div class="texts">
-//         <h1 class="title">${news.title}</h1>
-//         </div>
-//     </div>`;
-// }
-
-// // <p class="description">${news.}</p>
-
-async function main() {
-    const news = await fetch("https://newsapi.org/v2/everything?q=nice&from=2023-05-14&sortBy=popularity&apiKey=28a8dff1341c46be965cb359067b70ab");
+async function main(url = 'https://newsapi.org/v2/everything?q=news&from=2023-05-14&sortBy=popularity&apiKey=28a8dff1341c46be965cb359067b70ab') {
+    const news = await fetch(url);
     const newsData = await news.json();
     console.log(newsData);
-    localStorage.setItem('newsData', JSON.stringify(newsData)); // Store newsData in local storage
+    localStorage.setItem('newsData', JSON.stringify(newsData));
     const newsListEl = document.querySelector('.news__container');
     newsListEl.innerHTML = newsData.articles.map((news, index) => newsHTML(news, index)).join("");
 }
 
 // Rest of the code...
-
 
 function newsHTML(news, index) {
     return `<div class="news" onclick="redirectToNewsPage(${index})">
@@ -56,6 +42,3 @@ function newsHTML(news, index) {
 function redirectToNewsPage(index) {
     window.location.href = `NewsPage.html?article=${index}`;
 }
-
-main();
-
