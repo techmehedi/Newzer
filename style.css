@@ -290,5 +290,14 @@ html {
     .main__img{
         width: 300px;
     }
-    
+    .search__input{
+        margin: 32px 10px;
+        background-color: #white;
+        border: solid 2px;
+        border-color: #BC1722;
+        border-radius: 999px;
+    }
+    .search__btn{
+        display: none;
+    }
 }

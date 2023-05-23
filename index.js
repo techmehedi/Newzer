@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const searchInputValue = searchInput.value;
 
         // Save the search term to local storage.
-        localStorage.setItem('searchTerm', searchInputValue);
+        localStorage.setItem('searchTerm', encodeURIComponent(searchInputValue));
 
         // Redirect to the news page.
         window.location.href = './news.html';
