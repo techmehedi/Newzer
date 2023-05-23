@@ -1,5 +1,10 @@
 let Userurl;
-let searchInputValue;
+let searchInputValue = localStorage.getItem('searchTerm'); // Retrieve the search term from local storage.
+if (searchInputValue) {
+    Userurl = `https://newsapi.org/v2/everything?q=${searchInputValue}&from=2023-05-14&sortBy=popularity&apiKey=28a8dff1341c46be965cb359067b70ab`;
+} else {
+    Userurl = 'https://newsapi.org/v2/everything?q=news&from=2023-05-14&sortBy=popularity&apiKey=28a8dff1341c46be965cb359067b70ab';
+}
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const searchForm = document.querySelector('.search');
@@ -7,14 +12,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
         event.preventDefault();
         const searchInput = document.querySelector('.search__input');
         searchInputValue = searchInput.value;
-        
+
         Userurl = `https://newsapi.org/v2/everything?q=${searchInputValue}&from=2023-05-14&sortBy=popularity&apiKey=28a8dff1341c46be965cb359067b70ab`;
-        
+
         if(searchInputValue.trim() !== ""){
             await main(Userurl);
         }
     });
-    main();
+
+    // If there's a search term, fetch news according to it.
+    if(searchInputValue) {
+        main(Userurl);
+    } else {
+        main();
+    }
 });
 
 async function main(url = 'https://newsapi.org/v2/everything?q=news&from=2023-05-14&sortBy=popularity&apiKey=28a8dff1341c46be965cb359067b70ab') {
@@ -26,7 +37,6 @@ async function main(url = 'https://newsapi.org/v2/everything?q=news&from=2023-05
     newsListEl.innerHTML = newsData.articles.map((news, index) => newsHTML(news, index)).join("");
 }
 
-// Rest of the code...
 
 function newsHTML(news, index) {
     return `<div class="news" onclick="redirectToNewsPage(${index})">
