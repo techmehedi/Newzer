@@ -18,7 +18,7 @@ html {
 
 
 
-/* NAVIGARTION  */
+/* NAVIGATION  */
 
 .nav__window {
     display: flex;
@@ -26,8 +26,6 @@ html {
     align-items: center;
 }
 
-.nav__figure {
-}
 
 .nav__img {
     width: 100px;

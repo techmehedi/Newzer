@@ -1,9 +1,9 @@
 let Userurl;
 let searchInputValue = localStorage.getItem('searchTerm'); // Retrieve the search term from local storage.
 if (searchInputValue) {
-    Userurl = `https://newsapi.org/v2/everything?q=${searchInputValue}&from=2023-05-14&sortBy=popularity&apiKey=28a8dff1341c46be965cb359067b70ab`;
+    Userurl = `https://newsdata.io/api/1/news?apikey=pub_22586d54c0a8cc2132115b8f27c120444300d&q=${searchInputValue}&language=en`;
 } else {
-    Userurl = 'https://newsapi.org/v2/everything?q=news&from=2023-05-14&sortBy=popularity&apiKey=28a8dff1341c46be965cb359067b70ab';
+    Userurl = 'https://newsdata.io/api/1/news?apikey=pub_22586d54c0a8cc2132115b8f27c120444300d&q=apple&language=en';
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const searchInput = document.querySelector('.search__input');
         searchInputValue = searchInput.value;
 
-        Userurl = `https://newsdata.io/api/1/news?apikey=pub_22586d54c0a8cc2132115b8f27c120444300d&q=${searchInputValue}`;
+        Userurl = `https://newsdata.io/api/1/news?apikey=pub_22586d54c0a8cc2132115b8f27c120444300d&q=${searchInputValue}&language=en`;
 
         if(searchInputValue.trim() !== ""){
             await main(Userurl);
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 
-async function main(url = 'https://newsdata.io/api/1/news?apikey=pub_22586d54c0a8cc2132115b8f27c120444300d&q=chatgpt') {
+async function main(url = 'https://newsdata.io/api/1/news?apikey=pub_22586d54c0a8cc2132115b8f27c120444300d&q=apple&language=en') {
     const news = await fetch(url);
     const newsData = await news.json();
     console.log(newsData);
@@ -40,15 +40,20 @@ async function main(url = 'https://newsdata.io/api/1/news?apikey=pub_22586d54c0a
 
 
 function newsHTML(news, index) {
+    let imageUrl = news.image_url;
+    if(imageUrl === null) {
+        imageUrl = './assets/imgno.png';
+    }
     return `<div class="news" onclick="redirectToNewsPage(${index})">
         <figure class="img">
-            <img src="${news.image_url}" alt="" class="news__img">
+            <img src="${imageUrl}" alt="" class="news__img">
         </figure>
         <div class="texts">
             <h1 class="title">${news.title}</h1>
         </div>
     </div>`;
 }
+
 
 function redirectToNewsPage(index) {
     window.location.href = `NewsPage.html?article=${index}`;
