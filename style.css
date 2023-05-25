@@ -232,6 +232,29 @@ html {
     cursor: pointer;
 }
 
+.news__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 180px;
+    font-size: 60px;
+    color: #BC1722;
+}
+
+.fa-spinner {
+    animation: rotate 600ms infinite linear;
+}
+
+@keyframes rotate {
+    0% {
+      transform: rotate(0);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
 /* SMALL PHONES, TABLETS, LARGE SMART PHONES */
 
 @media (max-width: 768px){

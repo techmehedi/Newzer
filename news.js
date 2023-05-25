@@ -3,7 +3,7 @@ let searchInputValue = localStorage.getItem('searchTerm'); // Retrieve the searc
 if (searchInputValue) {
     Userurl = `https://newsdata.io/api/1/news?apikey=pub_22586d54c0a8cc2132115b8f27c120444300d&q=${encodeURIComponent(searchInputValue)}&language=en`;
 } else {
-    Userurl = 'https://newsdata.io/api/1/news?apikey=pub_22586d54c0a8cc2132115b8f27c120444300d&q=sports&language=en';
+    Userurl = 'https://newsdata.io/api/1/news?apikey=pub_22586d54c0a8cc2132115b8f27c120444300d&q=movie&language=en';
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 });
 
-async function main(url = 'https://newsdata.io/api/1/news?apikey=pub_22586d54c0a8cc2132115b8f27c120444300d&q=sports&language=en') {
+async function main(url = 'https://newsdata.io/api/1/news?apikey=pub_22586d54c0a8cc2132115b8f27c120444300d&q=movie&language=en') {
     const news = await fetch(url);
     const newsData = await news.json();
     console.log(newsData);
